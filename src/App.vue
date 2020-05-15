@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <ys-load1 :isShow='aa'></ys-load1> -->
-
   </div>
 </template>
 <script>
@@ -12,9 +10,6 @@ export default {
     }
   },
   mounted () {
-    // setTimeout(() => {
-    //   this.aa = true
-    // }, 1000)
     this.$YsLoad1.startLoad()
     setTimeout(() => {
       this.$YsLoad1.endLoad()

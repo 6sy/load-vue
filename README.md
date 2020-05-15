@@ -1,24 +1,12 @@
 # load-vue
 
-## Project setup
-```
-npm install
-```
+每个组件在 src/components/Load/  文件夹中
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+npm 入口文件在  src/components/Load/index.js 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+YSLoadCan6效果已做出来，准备定制化配置
 
-### Lints and fixes files
-```
-npm run lint
-```
+# 演示
+ 在main.js完成注册 在 app.vue进行使用。
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
