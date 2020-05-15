@@ -20,7 +20,8 @@ export default {
       // 进度
       prograss: 0,
       // 延迟
-      i: 0
+      i: 0,
+      donghua: ''
     }
   },
   props: {
@@ -66,6 +67,8 @@ export default {
           this.ctx = ctx
           window.requestAnimationFrame(this.show)
         })
+      } else {
+        window.cancelAnimationFrame(this.donghua)
       }
     }
   },
@@ -85,7 +88,7 @@ export default {
       this.insideRing()
       // 文本
       this.text()
-      window.requestAnimationFrame(this.show)
+      this.donghua = window.requestAnimationFrame(this.show)
     },
     outerRing () {
       this.outerRingStart += this.step
@@ -129,8 +132,8 @@ export default {
     },
     endLoad () {
       this.isShow = false
+      // 初始化
       Object.assign(this.$data, this.$options.data())
-      cancelAnimationFrame(this.show)
     }
   }
 }

@@ -34,7 +34,8 @@ export default {
       smallEnd2: -0.1,
       // 速度记录
       i: 0,
-      ctx: ''
+      ctx: '',
+      donghua: ''
     }
   },
   props: {
@@ -84,6 +85,9 @@ export default {
           window.requestAnimationFrame(this.show)
         })
       }
+      if (val === false) {
+        window.cancelAnimationFrame(this.donghua)
+      }
     }
   },
   methods: {
@@ -100,7 +104,7 @@ export default {
       this.ring(this.ctx)
       // 画两个环
       this.smallRing(this.ctx)
-      window.requestAnimationFrame(this.show)
+      this.donghua = window.requestAnimationFrame(this.show)
     },
     ring (ctx) {
       ctx.beginPath()

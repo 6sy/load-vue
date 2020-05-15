@@ -13,7 +13,8 @@ export default {
     return {
       ctx: '',
       begin: -0.5,
-      end: -0.5
+      end: -0.5,
+      donghua: ''
     }
   },
   props: {
@@ -58,6 +59,8 @@ export default {
           this.ctx = ctx
           window.requestAnimationFrame(this.show)
         })
+      } else {
+        window.cancelAnimationFrame(this.donghua)
       }
     }
   },
@@ -65,7 +68,7 @@ export default {
     show () {
       this.ctx.clearRect(0, 0, 500, 500)
       this.run()
-      window.requestAnimationFrame(this.show)
+      this.donghua = window.requestAnimationFrame(this.show)
     },
     // 判断状态
     run () {
@@ -117,7 +120,6 @@ export default {
     },
     endLoad (obj) {
       this.isShow = false
-      cancelAnimationFrame(this.show)
     },
     fuzhi (obj) {
       if (!obj) return ''

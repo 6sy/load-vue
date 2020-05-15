@@ -7,7 +7,6 @@
           :key='index'
           :style='{width:radius,height:radius}'></li>
     </ul>
-    <canvas class='canvas'></canvas>
   </div>
 </template>
 <script>

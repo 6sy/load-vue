@@ -22,8 +22,10 @@ export default {
       stepFirst: 0,
       // 第二个点的速度
       stepSecond: 0,
-      // ball step
-      stepBall: 1,
+      // ball角度
+      stepBall: 0,
+      // spped ball
+      speedBall: 0.75,
       ballX: 100,
       ballY: 250
 
@@ -34,13 +36,18 @@ export default {
       type: Number,
       default: 1
     },
+    // 半径
+    radius: {
+      type: Number,
+      default: 150
+    },
     isShow: {
       type: Boolean,
       default: false
     },
     step: {
       type: Number,
-      default: 5
+      default: 2.5
     },
     background: {
       type: String,
@@ -60,6 +67,7 @@ export default {
           const ctx = document.getElementById('canvas').getContext('2d')
           this.ctx = ctx
           this.runFun = this.rectLeft
+          this.ballRun = this.ballOne
           window.requestAnimationFrame(this.show)
         })
       }
@@ -189,14 +197,48 @@ export default {
       }
     },
     ball () {
-      this.ballX += this.stepBall
       this.ctx.beginPath()
+      this.stepBall += this.speedBall
+      this.ballRun()
       this.ctx.arc(this.ballX, this.ballY, 10, 0, 2 * Math.PI)
       this.ctx.fill()
     },
-    ballJsuanY () {
+    ballRun () {
 
-    }
+    },
+    ballOne () {
+      const x = Math.cos(this.stepBall * 2 * Math.PI / 360) * this.radius
+      this.ballX = 100 + 150 - x
+      this.ballY = Math.sqrt(150 * 150 - (250 - this.ballX) * (250 - this.ballX)) + 250
+      if (this.stepBall === 90) {
+        this.ballRun = this.ballTow
+      }
+    },
+    ballTow () {
+      const x = Math.sin(-Math.PI / 2 + this.stepBall * 2 * Math.PI / 360) * this.radius
+      this.ballX = x + 250
+      this.ballY = Math.sqrt(150 * 150 - (-250 + this.ballX) * (-250 + this.ballX)) + 250
+      if (this.stepBall === 180) {
+        this.ballRun = this.ballThree
+      }
+    },
+    ballThree () {
+      const x = Math.cos(-Math.PI + this.stepBall * 2 * Math.PI / 360) * this.radius
+      this.ballX = x + 250
+      this.ballY = -Math.sqrt(150 * 150 - (-250 + this.ballX) * (-250 + this.ballX)) + 250
+      if (this.stepBall === 270) {
+        this.ballRun = this.ballFour
+      }
+    },
+    ballFour () {
+      const x = Math.sin(-1.5 * Math.PI + this.stepBall * 2 * Math.PI / 360) * this.radius
+      this.ballX = 250 - x
+      this.ballY = -Math.sqrt(150 * 150 - (250 - this.ballX) * (250 - this.ballX)) + 250
+      if (this.stepBall === 360) {
+        this.ballRun = this.ballOne
+        this.stepBall = 0
+      }
+    },
     startLoad () {
       this.isShow = true
     }

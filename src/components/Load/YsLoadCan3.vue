@@ -35,7 +35,8 @@ export default {
       ball4: {},
       ball5: {},
       position: 50,
-      direction: ''
+      direction: '',
+      donghua: ''
     }
   },
   props: {
@@ -96,6 +97,8 @@ export default {
           // this.ctx = ctx
           window.requestAnimationFrame(this.show)
         })
+      } else {
+        window.cancelAnimationFrame(this.donghua)
       }
     }
   },
@@ -109,7 +112,7 @@ export default {
         this.ctx.fillRect(0, 0, 550 * this.size, 500 * this.size)
       }
       this.run()
-      window.requestAnimationFrame(this.show)
+      this.donghua = window.requestAnimationFrame(this.show)
     },
     // 动画控制
     run () {
